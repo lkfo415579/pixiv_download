@@ -261,6 +261,7 @@ def menu_download_by_member_bookmark(opisvalid, args):
 def menu_download_by_image_id(opisvalid, args):
     __log__.info('Image id mode (2).')
     if opisvalid and len(args) > 0:
+
         for image_id in args:
             try:
                 test_id = int(image_id)
@@ -277,6 +278,11 @@ def menu_download_by_image_id(opisvalid, args):
     else:
         image_ids = input('Image ids: ').rstrip("\r")
         image_ids = PixivHelper.get_ids_from_csv(image_ids, sep=" ")
+        #
+        print("Loaded list.txt")
+        image_ids = open('list.txt', 'r').readlines()
+        image_ids = [x.split()[0] for x in image_ids]
+        #####
         for image_id in image_ids:
             PixivImageHandler.process_image(sys.modules[__name__],
                                             __config__,

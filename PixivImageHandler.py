@@ -266,6 +266,8 @@ def process_image(caller,
                     except urllib.error.URLError:
                         PixivHelper.print_and_log('error', f'Error when download_image(), giving up url: {img}')
                     PixivHelper.print_and_log(None, '')
+                    # only download the first image
+                    break
 
             if config.writeImageInfo or config.writeImageJSON:
                 filename_info_format = format_src.filenameInfoFormat or format_src.filenameFormat
